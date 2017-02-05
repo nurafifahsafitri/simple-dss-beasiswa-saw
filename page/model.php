@@ -5,6 +5,7 @@ if ($update) {
 	$row = $sql->fetch_assoc();
 }
 
+// Jika ada transaksi data INSERT / UPDATE
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$validasi = false; $err = false;
 	if ($update) {
@@ -29,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
+// jika ada aksi delete
 if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
   $connection->query("DELETE FROM model WHERE kd_model='$_GET[key]'");
 	echo alert("Berhasil!", "?page=model");
@@ -40,34 +42,34 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	        <div class="panel-heading"><h3 class="text-center"><?= ($update) ? "EDIT" : "TAMBAH" ?></h3></div>
 	        <div class="panel-body">
 	            <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
-									<div class="form-group">
+	            <div class="form-group">
 	                  <label for="kd_beasiswa">Beasiswa</label>
-										<select class="form-control" name="kd_beasiswa" id="beasiswa">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM beasiswa") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["kd_beasiswa"]?>" <?= (!$update) ?: (($row["kd_beasiswa"] != $data["kd_beasiswa"]) ?: 'selected="on"') ?>><?=$data["nama"]?></option>
-											<?php endwhile; ?>
-										</select>
-									</div>
-									<div class="form-group">
+					<select class="form-control" name="kd_beasiswa" id="beasiswa">
+						<option>---</option>
+						<?php $sql = $connection->query("SELECT * FROM beasiswa") ?>
+						<?php while ($data = $sql->fetch_assoc()): ?>
+							<option value="<?=$data["kd_beasiswa"]?>" <?= (!$update) ?: (($row["kd_beasiswa"] != $data["kd_beasiswa"]) ?: 'selected="on"') ?>><?=$data["nama"]?></option>
+						<?php endwhile; ?>
+					</select>
+				</div>
+				<div class="form-group">
 	                  <label for="kd_kriteria">Kriteria</label>
-										<select class="form-control" name="kd_kriteria" id="kriteria">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM kriteria") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["kd_kriteria"]?>" <?= (!$update) ?: (($row["kd_kriteria"] != $data["kd_kriteria"]) ?: 'selected="on"') ?>><?=$data["nama"]?></option>
-											<?php endwhile; ?>
-										</select>
-									</div>
-	                <div class="form-group">
-	                    <label for="bobot">Bobot</label>
-	                    <input type="text" name="bobot" class="form-control" <?= (!$update) ?: 'value="'.$row["bobot"].'"' ?>>
-	                </div>
-	                <button type="submit" class="btn btn-<?= ($update) ? "warning" : "info" ?> btn-block">Simpan</button>
+					<select class="form-control" name="kd_kriteria" id="kriteria">
+						<option>---</option>
+						<?php $sql = $connection->query("SELECT * FROM kriteria") ?>
+						<?php while ($data = $sql->fetch_assoc()): ?>
+							<option value="<?=$data["kd_kriteria"]?>" <?= (!$update) ?: (($row["kd_kriteria"] != $data["kd_kriteria"]) ?: 'selected="on"') ?>><?=$data["nama"]?></option>
+						<?php endwhile; ?>
+					</select>
+				</div>
+                <div class="form-group">
+                    <label for="bobot">Bebet</label>
+                    <input type="text" name="bobot" class="form-control" <?= (!$update) ?: 'value="'.$row["bobot"].'"' ?>>
+                </div>
+                <button type="submit" class="btn btn-<?= ($update) ? "warning" : "info" ?> btn-block">Simpan</button>
 	                <?php if ($update): ?>
-										<a href="?page=model" class="btn btn-info btn-block">Batal</a>
-									<?php endif; ?>
+	                	<a href="?page=model" class="btn btn-info btn-block">Batal</a>
+	                <?php endif; ?>
 	            </form>
 	        </div>
 	    </div>
@@ -80,7 +82,7 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	                <thead>
 	                    <tr>
 	                        <th>No</th>
-													<th>Beasiswa</th>
+	                        <th>Beasiswa</th>
 	                        <th>Kriteria</th>
 	                        <th>Bobot</th>
 	                        <th></th>
@@ -92,7 +94,7 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	                        <?php while($row = $query->fetch_assoc()): ?>
 	                        <tr>
 	                            <td><?=$no++?></td>
-															<td><?=$row['nama_beasiswa']?></td>
+	                            <td><?=$row['nama_beasiswa']?></td>
 	                            <td><?=$row['nama_kriteria']?></td>
 	                            <td><?=$row['bobot']?></td>
 	                            <td>

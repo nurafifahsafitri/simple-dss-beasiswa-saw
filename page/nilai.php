@@ -40,50 +40,50 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	        <div class="panel-heading"><h3 class="text-center"><?= ($update) ? "EDIT" : "TAMBAH" ?></h3></div>
 	        <div class="panel-body">
 	            <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
-									<div class="form-group">
-										<label for="nim">Mahasiswa</label>
-										<select class="form-control" name="nim">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM mahasiswa") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["nim"]?>" <?= (!$update) ? "" : (($row["nim"] != $data["nim"]) ? "" : 'selected="on"') ?>><?=$data["nim"]?> | <?=$data["nama"]?></option>
-											<?php endwhile; ?>
-										</select>
-									</div>
-									<div class="form-group">
+						<div class="form-group">
+							<label for="nim">Mahasiswa</label>
+							<select class="form-control" name="nim">
+								<option>---</option>
+								<?php $sql = $connection->query("SELECT * FROM mahasiswa") ?>
+								<?php while ($data = $sql->fetch_assoc()): ?>
+									<option value="<?=$data["nim"]?>" <?= (!$update) ? "" : (($row["nim"] != $data["nim"]) ? "" : 'selected="on"') ?>><?=$data["nim"]?> | <?=$data["nama"]?></option>
+								<?php endwhile; ?>
+							</select>
+						</div>
+						<div class="form-group">
 	                  <label for="kd_beasiswa">Beasiswa</label>
-										<select class="form-control" name="kd_beasiswa" id="beasiswa">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM beasiswa") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["kd_beasiswa"]?>" <?= (!$update) ? "" : (($row["kd_beasiswa"] != $data["kd_beasiswa"]) ? "" : 'selected="on"') ?>><?=$data["nama"]?></option>
-											<?php endwhile; ?>
-										</select>
-									</div>
-									<div class="form-group">
+							<select class="form-control" name="kd_beasiswa" id="beasiswa">
+								<option>---</option>
+								<?php $sql = $connection->query("SELECT * FROM beasiswa") ?>
+								<?php while ($data = $sql->fetch_assoc()): ?>
+									<option value="<?=$data["kd_beasiswa"]?>" <?= (!$update) ? "" : (($row["kd_beasiswa"] != $data["kd_beasiswa"]) ? "" : 'selected="on"') ?>><?=$data["nama"]?></option>
+								<?php endwhile; ?>
+							</select>
+						</div>
+						<div class="form-group">
 	                  <label for="kd_kriteria">Kriteria</label>
-										<select class="form-control" name="kd_kriteria" id="kriteria">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM kriteria") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["kd_kriteria"]?>" <?= (!$update) ? "" : (($row["kd_kriteria"] != $data["kd_kriteria"]) ? "" : 'selected="on"') ?>><?=$data["nama"]?></option>
-											<?php endwhile; ?>
-										</select>
-									</div>
-	                <div class="form-group">
+					<select class="form-control" name="kd_kriteria" id="kriteria">
+						<option>---</option>
+						<?php $sql = $connection->query("SELECT * FROM kriteria") ?>
+						<?php while ($data = $sql->fetch_assoc()): ?>
+							<option value="<?=$data["kd_kriteria"]?>" <?= (!$update) ? "" : (($row["kd_kriteria"] != $data["kd_kriteria"]) ? "" : 'selected="on"') ?>><?=$data["nama"]?></option>
+						<?php endwhile; ?>
+					</select>
+				</div>
+                <div class="form-group">
 		                  <label for="nilai">Nilai</label>
-											<select class="form-control" name="nilai" id="nilai">
-											<option>---</option>
-											<?php $sql = $connection->query("SELECT * FROM penilaian") ?>
-											<?php while ($data = $sql->fetch_assoc()): ?>
-												<option value="<?=$data["kd_penilaian"]?>" <?= (!$update) ? "" : (($row["kd_penilaian"] != $data["kd_penilaian"]) ? "" : 'selected="on"') ?>><?=$data["keterangan"]?></option>
-											<?php endwhile; ?>
-											</select>
+							<select class="form-control" name="nilai" id="nilai">
+							<option>---</option>
+							<?php $sql = $connection->query("SELECT * FROM penilaian") ?>
+							<?php while ($data = $sql->fetch_assoc()): ?>
+								<option value="<?=$data["kd_penilaian"]?>" <?= (!$update) ? "" : (($row["kd_penilaian"] != $data["kd_penilaian"]) ? "" : 'selected="on"') ?>><?=$data["keterangan"]?></option>
+							<?php endwhile; ?>
+							</select>
 	                </div>
 	                <button type="submit" class="btn btn-<?= ($update) ? "warning" : "info" ?> btn-block">Simpan</button>
 	                <?php if ($update): ?>
-										<a href="?page=nilai" class="btn btn-info btn-block">Batal</a>
-									<?php endif; ?>
+						<a href="?page=nilai" class="btn btn-info btn-block">Batal</a>
+					<?php endif; ?>
 	            </form>
 	        </div>
 	    </div>
@@ -96,8 +96,8 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	                <thead>
 	                    <tr>
 	                        <th>No</th>
-													<th>NIM</th>
-													<th>Nama</th>
+							<th>NIM</th>
+							<th>Nama</th>
 	                        <th>Beasiswa</th>
 	                        <th>Kriteria</th>
 	                        <th>Nilai</th>
@@ -110,8 +110,8 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 	                        <?php while($row = $query->fetch_assoc()): ?>
 	                        <tr>
 	                            <td><?=$no++?></td>
-															<td><?=$row['nim']?></td>
-															<td><?=$row['nama_mahasiswa']?></td>
+								<td><?=$row['nim']?></td>
+								<td><?=$row['nama_mahasiswa']?></td>
 	                            <td><?=$row['nama_beasiswa']?></td>
 	                            <td><?=$row['nama_kriteria']?></td>
 	                            <td><?=$row['nilai']?></td>
